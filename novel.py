@@ -6,7 +6,7 @@
 # Created Date: 2024-05-29 22:50:33
 # Author: Simon Liu
 # -----
-# Last Modified: 2024-05-30 10:48:48
+# Last Modified: 2024-05-30 12:47:03
 # Modified By: Simon Liu
 # -----
 # Copyright (c) 2024 SimonLiu Inc.
@@ -46,7 +46,9 @@ def get_chapter_content(chapter_url):
     if content_div:
         # 获取正文文本，并删除以“笔趣阁 www.52bqg.info”开头的那一行内容
         chapter_text = content_div.get_text(separator='\n')
+        # chapter_text = re.sub(r'(?m)^\s+|\s+$', '', chapter_text)
         chapter_text = re.sub(r'^笔趣阁 www\.52bqg\.info.*\n', '', chapter_text, flags=re.M)
+
         return chapter_text
     else:
         return "正文内容未找到"
@@ -80,7 +82,8 @@ def save_chapters_to_file(chapters, book_title):
         for title, chapter_relative_url in chapters:
             chapter_url = chapter_list_url.rstrip('/') + '/' + chapter_relative_url.strip()
             chapter_text = get_chapter_content(chapter_url)
-            
+            # 删除每一行开头和结尾的空格，保留换行符
+            chapter_text = re.sub(r'(?m)^\s+|\s+$', '', chapter_text)
             # 打印章节信息到控制台
             print(f'章节标题: {title}')
             print(f'章节URL: {chapter_url}')
@@ -94,7 +97,7 @@ def save_chapters_to_file(chapters, book_title):
             file.write(chapter_text)
             file.write('\n\n')  # 添加空行以分隔章节
 
-            time.sleep(2)
+            time.sleep(0.5)
 
     # 打印txt文件的名称和大小
     filesize = os.path.getsize(filename)
