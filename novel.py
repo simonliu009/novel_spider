@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 ###
+# 提取 笔趣阁 https://www.52bqg.info/ 小说
+# virtualenv novelspider
 # File: /Users/simonliu/Documents/book/novel.py
 # Project: /Users/simonliu/Documents/book
 # Created Date: 2024-05-29 22:50:33
 # Author: Simon Liu
 # -----
-# Last Modified: 2024-05-30 12:47:03
+# Last Modified: 2024-06-01 11:08:36
 # Modified By: Simon Liu
 # -----
 # Copyright (c) 2024 SimonLiu Inc.
